@@ -168,7 +168,7 @@ func Substr(s *string, from int, length int) string {
 	if length < 1 {
 		return ""
 	} else {
-		if from == 0 || from > CharLength(s) {
+		if from == 0 || from > *CharLength(s).Value {
 			return ""
 		} else if from < 0 {
 			// TODO
@@ -176,35 +176,5 @@ func Substr(s *string, from int, length int) string {
 		} else {
 			return (*s)[from:length]
 		}
-	}
-}
-
-// Length
-/*
-  SQL: select char_length('我') from dual;
-  Output: 3
-*/
-func Length(s *string) int {
-	if s == nil {
-		return -1
-	} else if *s == "" {
-		return 0
-	} else {
-		return len(*s)
-	}
-}
-
-// CharLength
-/*
-  SQL: select char_length('我') from dual;
-  Output: 1
-*/
-func CharLength(s *string) int {
-	if s == nil {
-		return -1
-	} else if *s == "" {
-		return 0
-	} else {
-		return strings.Count(*s, "") - 1
 	}
 }
